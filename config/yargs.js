@@ -4,6 +4,7 @@ const descripcion = {
     desc: "Descripcion de la tarea por hacer"
 };
 const completado = {
+    demand: true,
     default: " ",
     alias: 'c',
     desc: "Marca como completado"

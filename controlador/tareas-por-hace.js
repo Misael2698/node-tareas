@@ -29,6 +29,7 @@ const crear = (descripcion) => {
         return tarea;
     }
     //importamos
+
 const getLista = (completado) => {
     cargaDB();
     if (completado !== " ") {
