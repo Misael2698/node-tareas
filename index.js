@@ -12,9 +12,9 @@ switch (comando) {
         break;
     case 'listar':
         console.log("listar todas las tareas");
-        let listado = tareas.getLista();
+        let listado = tareas.getLista(argv.completado);
         for (let tarea of listado) {
-            console.log("=====================Por Hacer=====================".rainbow);
+            console.log("=====================Tareas=====================".rainbow);
             console.log(tarea.descripcion);
             console.log("Estado: ", tarea.completado);
         }

@@ -29,12 +29,38 @@ const crear = (descripcion) => {
         return tarea;
     }
     //importamos
-const getLista = () => {
+const getLista = (completado) => {
     cargaDB();
-    return tareasPorHacer;
+    if (completado !== " ") {
+        if (completado === "true") {
+            completado = true;
+        } else {
+            completado = false;
+        }
+
+        let nuevoListado = tareasPorHacer.filter(tarea => tarea.completado === completado);
+        //console.log(nuevoListado);
+        tareasPorHacer = nuevoListado;
+        return tareasPorHacer
+
+    } else {
+        return tareasPorHacer;
+
+    }
+
+
+
+
+
 }
 const actualizar = (descripcion, completado = true) => {
+    if (completado === true) {
+        completado = true;
+    } else {
+        completado = false;
+    }
     cargaDB();
+
     let index = tareasPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
     if (index >= 0) {
         tareasPorHacer[index].completado = completado;
