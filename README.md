@@ -3,37 +3,73 @@ Recuerde instalar los paquetes
 ```
 npm install
 ```
-### creamos nuestro yargs.js
-```
-const descripcion = {
-    demand: true,
-    alias: 'd',
-    desc: "Descripcion de la tarea por hacer"
-};
-const completado = {
-    demand: true,
-    default: " ",
-    alias: 'c',
-    desc: "Marca como completado"
-};
-```
-Estamos creamos la informacion de nuestro comando tanto para la descripcion, como para el estado de la tarea
-```
-const argv = require('yargs')
-    .command('crear', 'Crear una tarea', {
-        descripcion
-    }).command('actualizar', 'actualizar estado', {
-        descripcion,
-        completado
-    }).command('eliminar', 'eliminar tarea', {
-        descripcion
-    }).command('listar', 'listar tarea', {
-        completado
-    })
-    .help().argv;
+## Utilizar el programa
+el programa constara de 4 opcion:
+°crear la tarea
+°listar las tareas
+°actualizar el estado de una tarea
+°borrar una tarea
 
-module.exports = {
-    argv
-}
+## opcion crear tarea
+Para crear una tarea se usa el siguiente comando
 ```
-Creamos los comando que vamos a usar para esta practica que en este caso son 4 comandos y al final los exportamos con el modules.exports
+node index crear -d "Estudiar para el examen"
+```
+Nota: Se usa comillas dobles cuando hay mas de una palabra eje:
+```
+node index crear -d "Hola mundo" 
+```
+caso contrario solo se pode una palabra
+```
+node index crear -d Saludar
+```
+## opcion listar tarea
+En el listar tarea se requiere un parameto que es el estado de la tarea true(completada) o false (imcompleta)
+Tareas completadas
+```
+node index listar -c true
+```
+resultado:
+```
+=====================Tareas=====================
+Jugar
+Estado:  true
+```
+Tareas imcompletas
+```
+node index listar -c false
+```
+resultado:
+```
+=====================Tareas=====================
+Estudiar
+Estado:  false
+=====================Tareas=====================
+Estudiar para el examen
+Estado:  false
+```
+y para listar todoas las tareas 
+```
+ node index listar -c " "
+```
+## opcion actualizar tarea
+Este comando recibira el nombre de la tarea y el estado que queremos cambiar la tarea true o false
+```
+node index actualizar -d "Estudiar para el examen" -c true
+
+```
+## opcion Borrar tarea
+Se usa el comando
+```
+node index eliminar -d "Estudiar para el examen"
+```
+y podemos listar todo y podemos ver que se ha eliminado la tarea
+```
+listar todas las tareas
+=====================Tareas=====================
+Jugar
+Estado:  true
+=====================Tareas=====================
+Estudiar
+Estado:  true
+```
